@@ -53,18 +53,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-java</artifactId>
-			<version>7.13.0</version> <!-- Use the latest version available -->
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-spring</artifactId>
-			<version>6.11.0</version> <!-- Use the latest version available -->
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -83,12 +71,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<!-- Deploy to Nexus -->
-	<distributionManagement>
-		<repository>
-			<id>deploymentRepo</id>
-			<name>Nexus Repository</name>
-			<url>http://localhost:8081/repository/maven-releases/</url>
-		</repository>
-	</distributionManagement>
+
 </project>
