@@ -86,7 +86,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>devops-integration</finalName>
+		<finalName>gestion-station-ski-1.0</finalName>
 	</build>
 
 </project>
