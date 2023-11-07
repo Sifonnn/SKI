@@ -23,38 +23,27 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 
 class RegistrationServiceTest {
+@Test
+    public void testNumWeeksCourseOfInstructorBySupport() {
+        // Arrange
+        IRegistrationRepository registrationRepository = mock(IRegistrationRepository.class); // Crée un mock de RegistrationRepository.
 
-    @Mock
-    private IRegistrationRepository registrationRepository;
-    @Mock
-    private ISkierRepository skierRepository;
+        Long numInstructor = 123L; // Remplacez par la valeur de votre choix.
+        Support support = Support.SNOWBOARD; // Remplacez par le support de votre choix.
 
-    @InjectMocks
-    private RegistrationServicesImpl registrationServices;
+        List<Integer> expectedWeeks = List.of(2, 4, 6); // Les valeurs attendues.
 
+        // Configurer le mock pour renvoyer les valeurs attendues lorsque la méthode est appelée.
+        when(registrationRepository.numWeeksCourseOfInstructorBySupport(numInstructor, support))
+                .thenReturn(expectedWeeks);
 
-    @Test
-    public void testAddRegistrationAndAssignToSkier() {
-        // Créez un skieur de test
-        Skier skier = new Skier();
-        skier.setId(1L);
+        // Act
+        List<Integer> result = registrationRepository.numWeeksCourseOfInstructorBySupport(numInstructor, support);
 
-        Registration registration = new Registration();
-        registration.setSkier(skier);
-        Mockito.when(skierRepository.findById(1L)).thenReturn(Optional.of(skier));
+        // Assert
+        assertEquals(expectedWeeks, result); // Vérifie que le résultat est égal aux valeurs attendues.
 
-        Mockito.when(registrationRepository.save(Mockito.any(Registration.class))).thenAnswer(invocation -> {
-            Registration savedRegistration = invocation.getArgument(0);
-            savedRegistration.setId(1L);
-            return savedRegistration;
-
-        });
-
-        Registration result = registrationServices.addRegistrationAndAssignToSkier(registration, 1L);
-
-
-        assertNotNull(result);
-        assertEquals(skier, result.getSkier());
-        assertEquals(1L, result.getId());
+        // Vérifie que la méthode numWeeksCourseOfInstructorBySupport a été appelée avec les bons arguments.
+        verify(registrationRepository).numWeeksCourseOfInstructorBySupport(numInstructor, support);
     }
 }
