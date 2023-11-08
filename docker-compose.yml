@@ -2,7 +2,7 @@ version: "4"
 services:
   springboot-app:
 
-    image: wissemelarbi/Ski-master:1.0.0
+    image: gestion-station-ski:1.0.0
     restart: always
     build: .
     ports:
