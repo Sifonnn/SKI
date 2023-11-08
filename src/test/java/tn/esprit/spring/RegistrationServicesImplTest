@@ -1,28 +1,29 @@
 package tn.esprit.spring;
 
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tn.esprit.spring.entities.Registration;
-import tn.esprit.spring.entities.Skier;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import tn.esprit.spring.entities.*;
+import tn.esprit.spring.repositories.ICourseRepository;
 import tn.esprit.spring.repositories.IRegistrationRepository;
 import tn.esprit.spring.repositories.ISkierRepository;
-import tn.esprit.spring.services.RegistrationServicesImpl;
+import tn.esprit.spring.services.CourseServicesImpl;
+import tn.esprit.spring.services.ICourseServices;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class RegistrationServicesImplTest {
 
-public class RegistrationServiceTest {
-@InjectMocks
+    @InjectMocks
     private tn.esprit.spring.services.RegistrationServicesImpl registrationServices;
 
     @Mock
@@ -64,4 +65,8 @@ public class RegistrationServiceTest {
         Mockito.verify(skierRepository, Mockito.times(1)).findById(numSkier);
         Mockito.verify(registrationRepository, Mockito.times(1)).save(registration);
     }
+
 }
+
+
+
