@@ -1,46 +1,100 @@
-gistrationServices;
+package tn.esprit.spring;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
+import tn.esprit.spring.entities.Subscription;
+import tn.esprit.spring.entities.TypeSubscription;
+import tn.esprit.spring.repositories.ISubscriptionRepository;
+import tn.esprit.spring.services.SubscriptionServicesImpl;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+class SubscriptionServicesImplTest {
 
     @Mock
-    private IRegistrationRepository registrationRepository;
-
-    @Mock
-    private ISkierRepository skierRepository;
-
-    @Mock
-    private ICourseRepository ICourseRepository;
+    private ISubscriptionRepository subscriptionRepository;
 
     @InjectMocks
-    private RegistrationServicesImplTest registrationServicesImplMock;
-
-
+    private SubscriptionServicesImpl subscriptionServices;
 
     @Test
-    public void testAddRegistrationAndAssignToSkier() {
-        // Créez un Skier fictif
-        Long numSkier = 1L;
-        Skier skier = new Skier();
-        skier.setNumSkier(numSkier);
+    void testAddSubscription() {
+        Subscription subscription = new Subscription();
+        subscription.setTypeSub(TypeSubscription.ANNUAL);
+        subscription.setStartDate(LocalDate.now());
 
-        // Créez un Registration fictif
-        Registration registration = new Registration();
-        registration.setSkier(skier);
+        when(subscriptionRepository.save(subscription)).thenReturn(subscription);
 
-        // Définissez les comportements simulés pour les méthodes de vos repositories
-        Mockito.when(skierRepository.findById(numSkier)).thenReturn(Optional.of(skier));
-        Mockito.when(registrationRepository.save(Mockito.any(Registration.class))).thenReturn(registration);
+        Subscription addedSubscription = subscriptionServices.addSubscription(subscription);
+        assertEquals(subscription, addedSubscription);
 
-        // Appelez la méthode que vous testez
-        Registration result = registrationServices.addRegistrationAndAssignToSkier(registration, numSkier);
-
-        // Assurez-vous que la méthode a correctement attribué le Skier et enregistré la Registration
-        Assertions.assertEquals(skier, result.getSkier());
-
-        // Vérifiez que les méthodes des repositories ont été appelées comme prévu
-        Mockito.verify(skierRepository, Mockito.times(1)).findById(numSkier);
-        Mockito.verify(registrationRepository, Mockito.times(1)).save(registration);
+        verify(subscriptionRepository, times(1)).save(subscription);
     }
 
-}
+    @Test
+    void testUpdateSubscription() {
+        Subscription subscription = new Subscription();
 
+        when(subscriptionRepository.save(subscription)).thenReturn(subscription);
+
+        Subscription updatedSubscription = subscriptionServices.updateSubscription(subscription);
+        assertEquals(subscription, updatedSubscription);
+
+        verify(subscriptionRepository, times(1)).save(subscription);
+    }
+
+    @Test
+    void testRetrieveSubscriptionById() {
+        Long subscriptionId = 1L;
+
+        Subscription subscription = new Subscription();
+        when(subscriptionRepository.findById(subscriptionId)).thenReturn(Optional.of(subscription));
+
+        Subscription retrievedSubscription = subscriptionServices.retrieveSubscriptionById(subscriptionId);
+        assertEquals(subscription, retrievedSubscription);
+
+        verify(subscriptionRepository, times(1)).findById(subscriptionId);
+    }
+
+    @Test
+    void testGetSubscriptionByType() {
+        TypeSubscription type = TypeSubscription.ANNUAL;
+
+        Set<Subscription> subscriptions = new HashSet<>();
+        when(subscriptionRepository.findByTypeSubOrderByStartDateAsc(type)).thenReturn(subscriptions);
+
+        Set<Subscription> retrievedSubscriptions = subscriptionServices.getSubscriptionByType(type);
+        assertEquals(subscriptions, retrievedSubscriptions);
+
+        verify(subscriptionRepository, times(1)).findByTypeSubOrderByStartDateAsc(type);
+    }
+
+    @Test
+    void testRetrieveSubscriptionsByDates() {
+        LocalDate startDate = LocalDate.of(2023, 1, 1);
+        LocalDate endDate = LocalDate.of(2023, 1, 31);
+
+        List<Subscription> subscriptions = List.of(new Subscription(), new Subscription());
+        when(subscriptionRepository.getSubscriptionsByStartDateBetween(startDate, endDate)).thenReturn(subscriptions);
+
+        List<Subscription> retrievedSubscriptions = subscriptionServices.retrieveSubscriptionsByDates(startDate, endDate);
+        assertEquals(subscriptions, retrievedSubscriptions);
+
+        verify(subscriptionRepository, times(1)).getSubscriptionsByStartDateBetween(startDate, endDate);
+    }
+}
 
 
