@@ -19,11 +19,11 @@ import static org.mockito.Mockito.*;
 public class PisteServiceImpTest {
 
 
-        @Autowired
+        @Mock
         private IPisteRepository PisteRepository;
 
 
-        @Autowired
+        @InjectMocks
         private PisteServicesImpl PisteServices;
 
 
