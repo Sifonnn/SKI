@@ -1,30 +1,4 @@
-package tn.esprit.spring;
-
-import org.junit.jupiter.api.*;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import tn.esprit.spring.entities.*;
-import tn.esprit.spring.repositories.ICourseRepository;
-import tn.esprit.spring.repositories.IRegistrationRepository;
-import tn.esprit.spring.repositories.ISkierRepository;
-import tn.esprit.spring.services.CourseServicesImpl;
-import tn.esprit.spring.services.ICourseServices;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-
-@SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class RegistrationServicesImplTest {
-
-    @InjectMocks
-    private tn.esprit.spring.services.RegistrationServicesImpl registrationServices;
+gistrationServices;
 
     @Mock
     private IRegistrationRepository registrationRepository;
