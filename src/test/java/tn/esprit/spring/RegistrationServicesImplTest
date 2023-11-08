@@ -1,1 +1,80 @@
+package tn.esprit.spring;
+
+import org.junit.jupiter.api.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import tn.esprit.spring.entities.*;
+import tn.esprit.spring.repositories.ICourseRepository;
+import tn.esprit.spring.repositories.IRegistrationRepository;
+import tn.esprit.spring.repositories.ISkierRepository;
+import tn.esprit.spring.repositories.ISubscriptionRepository;
+import tn.esprit.spring.services.CourseServicesImpl;
+import tn.esprit.spring.services.ICourseServices;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+@SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class RegistrationServicesImplTest {
+
+    @InjectMocks
+    private tn.esprit.spring.services.RegistrationServicesImpl registrationServices;
+
+    @Mock
+    private IRegistrationRepository registrationRepository;
+
+    @Mock
+    private ISkierRepository skierRepository;
+    @Mock
+    private ISubscriptionRepository subscriptionRepository;
+
+    @Mock
+    private ICourseRepository ICourseRepository;
+
+    @InjectMocks
+    private RegistrationServicesImplTest registrationServicesImplMock;
+
+
+
+    @Test
+    public void testAddRegistrationAndAssignToSkier() {
+        // Créez un Skier fictif
+        Long numSkier = 1L;
+        Skier skier = new Skier();
+        skier.setNumSkier(numSkier);
+
+        // Créez un Registration fictif
+        Registration registration = new Registration();
+        registration.setSkier(skier);
+
+        // Définissez les comportements simulés pour les méthodes de vos repositories
+        when(skierRepository.findById(numSkier)).thenReturn(Optional.of(skier));
+        when(registrationRepository.save(Mockito.any(Registration.class))).thenReturn(registration);
+
+        // Appelez la méthode que vous testez
+        Registration result = registrationServices.addRegistrationAndAssignToSkier(registration, numSkier);
+
+        // Assurez-vous que la méthode a correctement attribué le Skier et enregistré la Registration
+        assertEquals(skier, result.getSkier());
+
+        // Vérifiez que les méthodes des repositories ont été appelées comme prévu
+        Mockito.verify(skierRepository, Mockito.times(1)).findById(numSkier);
+        Mockito.verify(registrationRepository, Mockito.times(1)).save(registration);
+    }
+
+
+
+    }
+
 
