@@ -13,8 +13,8 @@ services:
       MYSQL_PASSWORD: root
       MYSQL_PORT: 3306
 
-  mysqldbw:
-    container_name: mysqldbw
+  mysqldb:
+    container_name: mysqldb
     image: mysql
     volumes:
       - /home/User/DESKTOP/db:/var/lib/mysql
