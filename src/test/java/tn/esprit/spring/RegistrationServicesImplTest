@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 
-class RegistrationServiceTest {
+public class RegistrationServiceTest {
 @InjectMocks
     private tn.esprit.spring.services.RegistrationServicesImpl registrationServices;
 
