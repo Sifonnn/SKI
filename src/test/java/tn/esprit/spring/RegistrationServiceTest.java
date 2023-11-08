@@ -19,31 +19,49 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@ExtendWith(MockitoExtension.class)
 @SpringBootTest
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class RegistrationServiceTest {
-@Test
-    public void testNumWeeksCourseOfInstructorBySupport() {
-        // Arrange
-        IRegistrationRepository registrationRepository = mock(IRegistrationRepository.class); // Crée un mock de RegistrationRepository.
+@InjectMocks
+    private tn.esprit.spring.services.RegistrationServicesImpl registrationServices;
 
-        Long numInstructor = 123L; // Remplacez par la valeur de votre choix.
-        Support support = Support.SNOWBOARD; // Remplacez par le support de votre choix.
+    @Mock
+    private IRegistrationRepository registrationRepository;
 
-        List<Integer> expectedWeeks = List.of(2, 4, 6); // Les valeurs attendues.
+    @Mock
+    private ISkierRepository skierRepository;
 
-        // Configurer le mock pour renvoyer les valeurs attendues lorsque la méthode est appelée.
-        when(registrationRepository.numWeeksCourseOfInstructorBySupport(numInstructor, support))
-                .thenReturn(expectedWeeks);
+    @Mock
+    private ICourseRepository ICourseRepository;
 
-        // Act
-        List<Integer> result = registrationRepository.numWeeksCourseOfInstructorBySupport(numInstructor, support);
+    @InjectMocks
+    private RegistrationServicesImplTest registrationServicesImplMock;
 
-        // Assert
-        assertEquals(expectedWeeks, result); // Vérifie que le résultat est égal aux valeurs attendues.
 
-        // Vérifie que la méthode numWeeksCourseOfInstructorBySupport a été appelée avec les bons arguments.
-        verify(registrationRepository).numWeeksCourseOfInstructorBySupport(numInstructor, support);
+
+    @Test
+    public void testAddRegistrationAndAssignToSkier() {
+        // Créez un Skier fictif
+        Long numSkier = 1L;
+        Skier skier = new Skier();
+        skier.setNumSkier(numSkier);
+
+        // Créez un Registration fictif
+        Registration registration = new Registration();
+        registration.setSkier(skier);
+
+        // Définissez les comportements simulés pour les méthodes de vos repositories
+        Mockito.when(skierRepository.findById(numSkier)).thenReturn(Optional.of(skier));
+        Mockito.when(registrationRepository.save(Mockito.any(Registration.class))).thenReturn(registration);
+
+        // Appelez la méthode que vous testez
+        Registration result = registrationServices.addRegistrationAndAssignToSkier(registration, numSkier);
+
+        // Assurez-vous que la méthode a correctement attribué le Skier et enregistré la Registration
+        Assertions.assertEquals(skier, result.getSkier());
+
+        // Vérifiez que les méthodes des repositories ont été appelées comme prévu
+        Mockito.verify(skierRepository, Mockito.times(1)).findById(numSkier);
+        Mockito.verify(registrationRepository, Mockito.times(1)).save(registration);
     }
 }
