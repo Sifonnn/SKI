@@ -2,7 +2,7 @@ version: "4"
 services:
   springboot-app:
 
-    image: wissemelarbi/alpine:1.0.0
+    image: wissemelarbi/Ski-master:1.0.0
     restart: always
     build: .
     ports:
