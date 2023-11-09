@@ -1,18 +1,19 @@
-package tn.esprit.spring.instructor.service;
+package tn.esprit.spring.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import tn.esprit.spring.entities.Course;
 import tn.esprit.spring.entities.Instructor;
 import tn.esprit.spring.entities.Support;
 import tn.esprit.spring.entities.TypeCourse;
 import tn.esprit.spring.repositories.ICourseRepository;
 import tn.esprit.spring.repositories.IInstructorRepository;
-import tn.esprit.spring.services.InstructorServicesImpl;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -24,9 +25,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-@SpringBootTest
 
-class InstructorServicesImplTest {
+@SpringBootTest
+@ExtendWith(SpringExtension.class)
+class InstructorServicesImplMockTest {
     @Mock
     private IInstructorRepository instructorRepository;
 
@@ -126,5 +128,4 @@ class InstructorServicesImplTest {
         assertEquals("Doe", instructor.getLastName());
         assertEquals(0,instructor.getCourses().size());
     }
-
 }

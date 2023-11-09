@@ -1,9 +1,7 @@
-/*package tn.esprit.spring.instructor.service;
+package tn.esprit.spring.services;
 
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.entities.Course;
@@ -12,8 +10,6 @@ import tn.esprit.spring.entities.Support;
 import tn.esprit.spring.entities.TypeCourse;
 import tn.esprit.spring.repositories.ICourseRepository;
 import tn.esprit.spring.repositories.IInstructorRepository;
-import tn.esprit.spring.services.IInstructorServices;
-import tn.esprit.spring.services.InstructorServicesImpl;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -21,11 +17,8 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
-public class InstructorService {
+class InstructorServicesImplTest {
 
     @Autowired
     IInstructorRepository instructorRepository;
@@ -33,12 +26,7 @@ public class InstructorService {
     InstructorServicesImpl instructorServices;
     @Autowired
     ICourseRepository courseRepository;
-    @Test
-    @Order(1)
-    public void retrieveAllInstructors(){
-        List<Instructor> listInstructor = instructorServices.retrieveAllInstructors();
-        assertEquals(6,listInstructor.size());
-    }
+
     @Test
     @Order(2)
     public void testAddInstructor() {
@@ -137,5 +125,4 @@ public class InstructorService {
         assertEquals(1, savedInstructor.getCourses().size());
         assertEquals(1, savedInstructor.getCourses().iterator().next().getLevel());
     }
-
-}*/
+}
