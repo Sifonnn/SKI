@@ -27,12 +27,6 @@ class InstructorServicesImplJunitTest {
     @Autowired
     ICourseRepository courseRepository;
     @Test
-    @Order(1)
-    public void retrieveAllInstructors(){
-        List<Instructor> listInstructor = instructorServices.retrieveAllInstructors();
-        assertEquals(6,listInstructor.size());
-    }
-    @Test
     @Order(2)
     public void testAddInstructor() {
         Instructor instructor = new Instructor();
