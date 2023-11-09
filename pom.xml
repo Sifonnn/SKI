@@ -72,6 +72,10 @@
 			<version>6.11.0</version> <!-- Use the latest version available -->
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
