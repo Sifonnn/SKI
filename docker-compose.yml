@@ -1,7 +1,7 @@
 version: "3"
 services:
   springboot-app:
-    image: wissem/Gestion-SKI:latest
+    image: wissemelarbi/Gestion-SKI:latest
     restart: always
     build : .
     ports:
