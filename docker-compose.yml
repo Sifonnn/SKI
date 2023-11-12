@@ -1,25 +1,23 @@
-version: "4"
+version: "3"
 services:
   springboot-app:
-
-    image: gestion-station-ski:1.0.0
+    image: wissem/Gestion-SKI:latest
     restart: always
-    build: .
+    build : .
     ports:
-      - 8000-8999:8089
+      - 8089:8089
     environment:
-      MYSQL_HOST: mysqldb
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_PORT: 3306
-
-  mysqldb:
-    container_name: mysqldb
-    image: mysql
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/stationski
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: wissem123
+  postgres:
+    container_name: postgres
+    image: postgres
     volumes:
-      - /home/User/DESKTOP/db:/var/lib/mysql
+      - /home/User/DESKTOP/db:/var/lib/postgresql/data
     ports:
-      - 3307:3306
+      - 5432:5432
     environment:
-      MYSQL_DATABASE: test
-      MYSQL_ROOT_PASSWORD: root
+      POSTGRES_DB: stationski
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: wissem123
