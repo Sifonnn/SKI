@@ -1,0 +1,34 @@
+services:
+  backend:
+    image: 'spring_app:v1'
+    container_name: spring
+    ports:
+      - 8089:8089
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3307/stationSki?createDatabaseIfNotExist=true&userSSL=false&max_allowed_packet=15728640
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE=*
+    networks:
+      - ski_network
+  mysql:
+     container_name: mysql
+     image: 'mysql:latest'
+     restart: always
+     ports:
+       - 3307:3306
+     volumes:
+       - db:/var/lib/mysql
+     environment:
+       MYSQL_DATABASE: 'stationSki'
+       MYSQL_ROOT_PASSWORD: 'root'
+     networks:
+       - ski_network
+volumes:
+  db:
+networks:
+  ski_network:
+    driver: bridge
