@@ -23,7 +23,7 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/stationski
     depends_on:
-      - postgres
+      - postgressql
     networks:
       - app-network
 
