@@ -1,8 +1,8 @@
 version: '3.8'
 services:
-  postgres:
+  postgressql:
     image: postgres:latest
-    container_name: postgres
+    container_name: postgressql
     ports:
       - "5433:5432"
     environment:
@@ -14,10 +14,10 @@ services:
     networks:
       - app-network
 
-  backend-container:
+  stationski-container:
     build:
       context: .  
-    container_name: backend-container
+    container_name: stationski-container
     ports:
       - "8089:8089"
     environment:
