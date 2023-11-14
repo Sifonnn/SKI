@@ -1,7 +1,7 @@
 global:
   scrape_interval: 15s
 
-  - job_name: 'Spring'
+  - job_name: spring
     metrics_path: /api/actuator/prometheus
     static_configs:
       - targets: ['192.168.8.104:8089']
