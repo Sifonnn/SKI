@@ -1,0 +1,23 @@
+version: "3"
+services:
+  springboot-app:
+    image: vip3er/azergharbi_ski:latest
+    restart: always
+    build : .
+    ports:
+      - 8090:8089
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/stationski
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: MDP**
+  postgres:
+    container_name: postgresql
+    image: postgres
+    volumes:
+      - /home/User/DESKTOP/db:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_DB: stationski
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: MDP**
