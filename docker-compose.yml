@@ -11,7 +11,7 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: wissem123
   postgres:
-    container_name: postgres
+    container_name: postgresql
     image: postgres
     volumes:
       - /home/User/DESKTOP/db:/var/lib/postgresql/data
