@@ -1,9 +1,13 @@
-FROM openjdk:11
+# Use an official OpenJDK runtime as the base image
+FROM openjdk:11-jre-slim
 
-WORKDIR /app/
+# Set the working directory in the container
+WORKDIR /app
 
-RUN curl -X GET http://admin:amine12@172.20.10.7:8081/repository/maven-releases/tn/esprit/spring/gestion-station-ski/2.0/gestion-station-ski-2.0.jar --output app.jar
+# Copy the executable JAR file and any other necessary files
+COPY target/gestion-station-ski-2.0.jar .
 
 EXPOSE 8089
 
-ENTRYPOINT ["java","-jar","app.jar"]
+# Set the command to run the Spring Boot application
+CMD ["java", "-jar", "gestion-station-ski-1.0.jar"]
