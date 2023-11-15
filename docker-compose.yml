@@ -1,8 +1,8 @@
 version: '3.8'
 services:
-  postgressql:
+  postgre:
     image: postgres:latest
-    container_name: postgressql
+    container_name: postgre
     ports:
       - "5433:5432"
     environment:
@@ -14,16 +14,16 @@ services:
     networks:
       - app-network
 
-  stationski-container:
+  stationski:
     build:
       context: .  
-    container_name: stationski-container
+    container_name: stationski
     ports:
       - "8089:8089"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/stationski
     depends_on:
-      - postgressql
+      - postgre
     networks:
       - app-network
 
