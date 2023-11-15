@@ -1,34 +1,35 @@
+version: '3'
 services:
-  backend:
-    image: 'amine283/spring_app:v1'
-    container_name: spring
+  kaddem:
+    image: amine283/spring_app:v1
+    restart: on-failure
     ports:
-      - 8089:8089
+      - '8089:8089'
     depends_on:
       - mysql
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3307/stationSki?createDatabaseIfNotExist=true&userSSL=false&max_allowed_packet=15728640
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=root
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE=*
     networks:
-      - ski_network
+      - mynetwork
+    volumes:
+      - .m2:/root/.m2
   mysql:
-     container_name: mysql
-     image: 'mysql:latest'
-     restart: always
-     ports:
-       - 3307:3306
-     volumes:
-       - db:/var/lib/mysql
-     environment:
-       MYSQL_DATABASE: 'stationSki'
-       MYSQL_ROOT_PASSWORD: 'root'
-     networks:
-       - ski_network
-volumes:
-  db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: amine
+      MYSQL_DATABASE: stationSki
+      MYSQL_USER: amine
+      MYSQL_PASSWORD: amine
+    networks:
+      - mynetwork
+    volumes:
+      - mysql-data:/var/lib/mysql
+
 networks:
-  ski_network:
+  mynetwork:
     driver: bridge
+
+volumes:
+  mysql-data:
+  .m2:
