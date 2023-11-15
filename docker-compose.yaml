@@ -1,6 +1,6 @@
 version: '3'
 services:
-  kaddem:
+  ski:
     image: amine283/spring_app:v1
     restart: on-failure
     ports:
