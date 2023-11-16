@@ -1,6 +1,18 @@
 version: '3'
 services:
- mysql:
+  ski:
+    image: amine-skier-spring_app:latest
+    restart: on-failure
+    ports:
+      - '8088:8088'
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
+    volumes:
+      - .m2:/root/.m2
+
+  mysql:
     image: mysql:latest
     restart: always
     container_name: mysql
@@ -11,17 +23,14 @@ services:
       MYSQL_DATABASE: stationSki
       MYSQL_USER: amine
       MYSQL_PASSWORD: amine
+    networks:
+      - mynetwork
     volumes:
-      - mysql-data:/var/lib/mysql   
-  ski:
-    image: amine-skier-spring_app:latest
-    restart: on-failure
-    ports:
-      - '8088:8088'
-    depends_on:
-      - mysql
-    volumes:
-      - .m2:/root/.m2
+      - mysql-data:/var/lib/mysql
+
+networks:
+  mynetwork:
+    driver: bridge
 
 volumes:
   mysql-data:
