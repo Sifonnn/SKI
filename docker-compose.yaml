@@ -21,6 +21,7 @@ services:
   mysql:
     image: mysql:latest
     restart: always
+    container_name: mysql
     ports:
       - 3309:3306
     environment:
