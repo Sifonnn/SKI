@@ -23,7 +23,7 @@ services:
       POSTGRES_PASSWORD: wissem123
   # Angular Application Service
   angular-app:
-    image: wissem/projectDevops:FrontdevopsImage
+    image: wissem/projectdevops:frontdevops
     container_name: angular
     restart: on-failure
     ports:
