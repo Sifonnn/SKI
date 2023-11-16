@@ -21,6 +21,10 @@ public class RegistrationServicesImpl implements  IRegistrationServices{
     private ISkierRepository skierRepository;
     private ICourseRepository courseRepository;
 
+    @Override
+    public Registration addRegistration(Registration registration){
+        return registrationRepository.save(registration);
+    }
 
     @Override
     public Registration addRegistrationAndAssignToSkier(Registration registration, Long numSkier) {
