@@ -7,12 +7,6 @@ services:
       - '8088:8088'
     depends_on:
       - mysql
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3309/stationSki?useUnicode=true&createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-      - SPRING_DATASOURCE_USERNAME=amine
-      - SPRING_DATASOURCE_PASSWORD=amine
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE=*
     networks:
       - mynetwork
     volumes:
@@ -23,7 +17,7 @@ services:
     restart: always
     container_name: mysql
     ports:
-      - 3309:3306
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: amine
       MYSQL_DATABASE: stationSki
