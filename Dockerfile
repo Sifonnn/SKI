@@ -1,4 +1,7 @@
-FROM ubuntu:latest
-LABEL authors="Admin"
+FROM openjdk:latest
 
-ENTRYPOINT ["top", "-b"]
+EXPOSE 8089
+
+ADD target/gestion-station-ski-1.0.jar gestion-station-ski-1.0.jar
+
+ENTRYPOINT ["java", "-jar", "/gestion-station-ski-1.0.jar"]
