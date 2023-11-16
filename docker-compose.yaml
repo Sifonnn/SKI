@@ -8,7 +8,7 @@ services:
     depends_on:
       - mysql
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3309/stationSki?createDatabaseIfNotExist=true&userSSL=false&max_allowed_packet=15728640
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/stationSki?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640
       - SPRING_DATASOURCE_USERNAME=amine
       - SPRING_DATASOURCE_PASSWORD=amine
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -22,7 +22,7 @@ services:
     image: mysql:latest
     restart: always
     ports:
-      - 3309:3306
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: amine
       MYSQL_DATABASE: stationSki
