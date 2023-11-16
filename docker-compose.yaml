@@ -4,7 +4,7 @@ services:
     image: amine283/spring_app:v1
     restart: on-failure
     ports:
-      - '8089:8089'
+      - '8088:8089'
     depends_on:
       - mysql
     environment:
