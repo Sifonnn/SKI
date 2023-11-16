@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/registration")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class RegistrationRestController {
     private final IRegistrationServices registrationServices;
     @PostMapping("/add")
