@@ -2,10 +2,10 @@
 FROM openjdk:11-jre-slim
 
 # Set the working directory in the container
-WORKDIR /app
+#WORKDIR /app
 
 # Copy the executable JAR file and any other necessary files
-COPY target/gestion-station-ski-2.0.jar .
+COPY target/gestion-station-ski-2.0.jar gestion-station-ski-2.0.jar
 
 EXPOSE 8088
 
