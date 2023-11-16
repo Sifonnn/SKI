@@ -6,9 +6,9 @@ services:
     volumes:
       - /home/vagrant/mysql-data:/var/lib/mysql
     ports:
-      - 3307:3306
+      - 3306:3306
     environment:
-      MYSQL_DATABASE: sami
+      MYSQL_DATABASE: stationSki
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: sami
       MYSQL_PASSWORD: beep
