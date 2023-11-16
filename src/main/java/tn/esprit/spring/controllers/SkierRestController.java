@@ -11,6 +11,7 @@ import tn.esprit.spring.services.ISkierServices;
 import java.util.List;
 
 @Tag(name = "\uD83C\uDFC2 Skier Management")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/skier")
 @RequiredArgsConstructor
