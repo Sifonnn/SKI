@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import tn.esprit.spring.entities.Subscription;
@@ -25,7 +26,13 @@ import static org.mockito.Mockito.*;
 @TestPropertySource(locations = "classpath:/application-test.properties")
 @SpringBootTest
 class SubscriptionServicesImplTest {
+    @Value("${spring.datasource.url}")
+    private String dataSourceUrl;
 
+    @Test
+    void testPrintDataSourceUrl() {
+        System.out.println("DataSource URL: " + dataSourceUrl);
+    }
     @Mock
     private ISubscriptionRepository subscriptionRepository;
 
