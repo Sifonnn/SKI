@@ -29,10 +29,10 @@ public class Registration implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Long numRegistration;
 	int numWeek;
-
+/*
 	@JsonIgnore
 	@ManyToOne
-    Skier skier;
+    Skier skier;*/
 	@JsonIgnore
 	@ManyToOne
 	Course course;
