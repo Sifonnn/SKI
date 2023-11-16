@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy the executable JAR file and any other necessary files
 COPY target/gestion-station-ski-2.0.jar .
 
-EXPOSE 8088
+EXPOSE 8089
 
 # Set the command to run the Spring Boot application
 CMD ["java", "-jar", "gestion-station-ski-2.0.jar"]
