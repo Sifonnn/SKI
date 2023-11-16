@@ -24,7 +24,7 @@ services:
       MYSQL_USER: amine
       MYSQL_PASSWORD: amine
     networks:
-      - mynetwork
+      - ski_mynetwork
     volumes:
       - mysql-data:/var/lib/mysql
 
