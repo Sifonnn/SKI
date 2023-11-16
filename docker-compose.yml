@@ -1,0 +1,24 @@
+version: "4"
+services:
+  ski-app:
+    image: gestion-station-ski:1.0.0
+    restart: always
+    build: .
+    ports:
+      - 8000-8999:8089
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_USER: sami
+      MYSQL_PASSWORD: beep
+      MYSQL_PORT: 3306
+
+  mysqldb:
+    container_name: mysqldb
+    image: mysql
+    volumes:
+      - /home/vagrant/mysql-data:/var/lib/mysql
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: sami
+      MYSQL_ROOT_PASSWORD: beep
