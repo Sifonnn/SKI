@@ -14,7 +14,7 @@ services:
       MYSQL_PASSWORD: beep
 
   ski-app:
-    image: gestion-station-ski:1.0.0
+    image: benchaabanesami/gestion-station-ski:1.0.0
     restart: always
     build: .
     ports:
