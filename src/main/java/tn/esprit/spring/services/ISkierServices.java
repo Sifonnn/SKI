@@ -11,17 +11,17 @@ public interface ISkierServices {
 
 	Skier  addSkier(Skier  skier);
 
-	Skier assignSkierToSubscription(Long numSkier, Long numSubscription);
+//	Skier assignSkierToSubscription(Long numSkier, Long numSubscription);
 
-	Skier addSkierAndAssignToCourse(Skier skier, Long numCourse);
+	//Skier addSkierAndAssignToCourse(Skier skier, Long numCourse);
 
 	void removeSkier (Long numSkier);
 
 	Skier retrieveSkier (Long numSkier);
 
 
-	Skier assignSkierToPiste(Long numSkieur, Long numPiste);
+	//Skier assignSkierToPiste(Long numSkieur, Long numPiste);
 
-	List<Skier> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription);
+	//List<Skier> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription);
 
 }
