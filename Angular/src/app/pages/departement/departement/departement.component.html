@@ -1,0 +1,59 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Ajoute:</h3>
+
+          <form (submit)="onSubmit()" class="form-inline">
+            <table>
+
+
+              <td><div class="form-group mr-2">
+                <label for="nomE" class="mr-2">Nom Depart:</label>
+                <input type="text" id="nomE" [(ngModel)]="newDepartement.nomDepart" name="End Contrat" class="form-control" required>
+              </div></td>
+
+
+              <td>
+                <div class="form-group mr-2">
+                  <button type="submit" class="btn btn-danger mt-4">Add Departement</button>
+                </div></td>
+            </table>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">List</h3>
+        </div>
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom Depart</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let dep of departements">
+            <td>{{ dep.idDepartement }}</td>
+            <td>{{ dep.nomDepart }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
