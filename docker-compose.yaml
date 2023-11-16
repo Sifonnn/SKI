@@ -14,8 +14,7 @@ services:
     networks:
       - mynetwork
     volumes:
-      - mysql-data:/var/lib/mysql
-      
+      - mysql-data:/var/lib/mysql   
   ski:
     image: amine-skier-spring_app:latest
     restart: on-failure
@@ -27,9 +26,6 @@ services:
       - mynetwork
     volumes:
       - .m2:/root/.m2
-
- 
-
 networks:
   mynetwork:
     driver: bridge
