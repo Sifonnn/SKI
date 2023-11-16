@@ -11,7 +11,6 @@ services:
       MYSQL_DATABASE: stationSki
       MYSQL_USER: amine
       MYSQL_PASSWORD: amine
-    network_mode: bridge
     volumes:
       - mysql-data:/var/lib/mysql   
   ski:
@@ -21,9 +20,9 @@ services:
       - '8088:8088'
     depends_on:
       - mysql
-    network_mode: bridge
     volumes:
       - .m2:/root/.m2
+
 volumes:
   mysql-data:
   .m2:
