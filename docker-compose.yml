@@ -21,3 +21,8 @@ services:
       POSTGRES_DB: stationski
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: MDP**
+  angular:
+    image: 'vip3er/azergharbi_ski_angular:latest'
+    container_name: angular
+    ports:
+      - "4200:80"    
