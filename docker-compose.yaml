@@ -1,7 +1,7 @@
 version: '3'
 services:
   ski:
-    image: amine283/spring_app:v1
+    image: amine-skier-spring_app
     restart: on-failure
     ports:
       - '8088:8089'
