@@ -1,4 +1,4 @@
-FROM eclipse-temurin:latest-alpine
+FROM eclipse-temurin:17-alpine
 
 EXPOSE 8089
 
