@@ -13,7 +13,7 @@ services:
       - .m2:/root/.m2
 
   mysql:
-    image: mysql:5.7
+    image: mysql:5.8
     restart: always
     container_name: mysql
     ports:
