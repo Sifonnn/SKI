@@ -24,30 +24,7 @@ public class SkierRestController {
         return  skierServices.addSkier(skier);
     }
 
-    @Operation(description = "Add Skier And Assign To Course")
-    @PostMapping("/addAndAssign/{numCourse}")
-    public Skier addSkierAndAssignToCourse(@RequestBody Skier skier,
-                                           @PathVariable("numCourse") Long numCourse){
-        return  skierServices.addSkierAndAssignToCourse(skier,numCourse);
-    }
-    @Operation(description = "Assign Skier To Subscription")
-    @PutMapping("/assignToSub/{numSkier}/{numSub}")
-    public Skier assignToSubscription(@PathVariable("numSkier")Long numSkier,
-                               @PathVariable("numSub") Long numSub){
-        return skierServices.assignSkierToSubscription(numSkier, numSub);
-    }
-
-    @Operation(description = "Assign Skier To Piste")
-    @PutMapping("/assignToPiste/{numSkier}/{numPiste}")
-    public Skier assignToPiste(@PathVariable("numSkier")Long numSkier,
-                               @PathVariable("numPiste") Long numPiste){
-        return skierServices.assignSkierToPiste(numSkier,numPiste);
-    }
-    @Operation(description = "retrieve Skiers By Subscription Type")
-    @GetMapping("/getSkiersBySubscription")
-    public List<Skier> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription) {
-        return skierServices.retrieveSkiersBySubscriptionType(typeSubscription);
-    }
+  
     @Operation(description = "Retrieve Skier by Id")
     @GetMapping("/get/{id-skier}")
     public Skier getById(@PathVariable("id-skier") Long numSkier){
