@@ -21,12 +21,7 @@ services:
       POSTGRES_DB: stationski
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: wissem123
-  # Angular Application Service
-  angular-app:
-    image: wissemdevops/imagefront:latest
-    restart: always
-    ports:
-      - 4200:80
+
 
 volumes:
   db:
