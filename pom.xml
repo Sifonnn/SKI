@@ -17,6 +17,10 @@
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
+	<properties>
+    <sonar.host.url>http://192.168.33.10:9000</sonar.host.url>
+    <sonar.login>sqa_46598d02a5305b8ed6776f0220a2592a9e61be03</sonar.login>
+</properties>
 	<distributionManagement>
 		<repository>
 			<id>deploymentRepo</id>
@@ -85,6 +89,30 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.12-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.10.0.2594</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
