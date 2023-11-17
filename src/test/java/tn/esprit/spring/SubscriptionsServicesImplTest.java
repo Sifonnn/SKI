@@ -12,7 +12,6 @@ import tn.esprit.spring.entities.Subscription;
 import tn.esprit.spring.entities.TypeSubscription;
 import tn.esprit.spring.repositories.ISubscriptionRepository;
 import tn.esprit.spring.services.SubscriptionServicesImpl;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -26,7 +25,6 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 @TestPropertySource(locations = "classpath:/application-test.properties")
 @SpringBootTest
-@ActiveProfiles("test")
 class SubscriptionServicesImplTest {
     @Value("${spring.datasource.url}")
     private String dataSourceUrl;
