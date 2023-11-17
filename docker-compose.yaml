@@ -3,7 +3,7 @@ services:
   ski:
     image: amine-skier-spring_app:latest
     ports:
-      - 8086:8088
+      - 8088:8088
     depends_on:
       - mysql
     networks:
