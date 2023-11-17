@@ -1,7 +1,7 @@
 version: "3"
 services:
   springboot-app:
-    image: wissemelarbiback/gestionskii:latest
+    image: wissemelarbi/gestionski:latest
     restart: always
     build : .
     ports:
