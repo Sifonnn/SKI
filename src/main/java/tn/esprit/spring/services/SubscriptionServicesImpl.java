@@ -23,31 +23,23 @@ public class SubscriptionServicesImpl implements ISubscriptionServices{
 
     private ISkierRepository skierRepository;
 
-@Override
-public Subscription addSubscription(Subscription subscription) {
-    // Check for null TypeSubscription
-    if (subscription.getTypeSub() == null) {
-        throw new IllegalArgumentException("TypeSubscription cannot be null");
+    @Override
+    public Subscription addSubscription(Subscription subscription) {
+        switch (subscription.getTypeSub()) {
+            case ANNUAL:
+                subscription.setEndDate(subscription.getStartDate().plusYears(1));
+                break;
+            case SEMESTRIEL:
+                subscription.setEndDate(subscription.getStartDate().plusMonths(6));
+                break;
+            case MONTHLY:
+                subscription.setEndDate(subscription.getStartDate().plusMonths(1));
+                break;
+            default:
+                subscription.setEndDate(subscription.getStartDate().plusMonths(1));
+        }
+        return subscriptionRepository.save(subscription);
     }
-
-    switch (subscription.getTypeSub()) {
-        case ANNUAL:
-            subscription.setEndDate(subscription.getStartDate().plusYears(1));
-            break;
-        case SEMESTRIEL:
-            subscription.setEndDate(subscription.getStartDate().plusMonths(6));
-            break;
-        case MONTHLY:
-            subscription.setEndDate(subscription.getStartDate().plusMonths(1));
-            break;
-        default:
-            throw new IllegalArgumentException("Unsupported TypeSubscription: " + subscription.getTypeSub());
-    }
-
-    // Save the subscription to the database
-    return subscriptionRepository.save(subscription);
-}
-
 
     @Override
     public Subscription updateSubscription(Subscription subscription) {
